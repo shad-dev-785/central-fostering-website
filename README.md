@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Central Fostering website
 
-## Getting Started
+A fostering agency website for London: Next.js 16 (App Router), TypeScript, Tailwind CSS 4.
+The public pages are static. Three forms (enquiry, call back, apply) post to small API routes that validate,
+store the submission in a database and email the agency.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy `.env.example` to `.env.local` for email and database settings. Without them the forms still work
+(submissions are saved to a local file in `data/`), but nobody is emailed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where to change things
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| What | Where |
+| --- | --- |
+| Name, phone, email, address, social links, Ofsted details, **logo** | `src/config/site.ts` |
+| Menu and footer links | `src/config/site.ts` |
+| Fostering types, FAQs, process steps, support list | `src/content/fostering.ts` |
+| Carer stories (samples right now) | `src/content/stories.ts` |
+| Blog posts | `src/content/posts.ts` |
+| Boroughs covered | `src/content/areas.ts` |
+| Colours and fonts | `src/app/globals.css` (tokens) and `src/app/layout.tsx` (fonts) |
+| Photos | `<PhotoSlot src="/photos/name.jpg" alt="..." />` (put files in `public/photos/`) |
 
-## Learn More
+## Backend and database
 
-To learn more about Next.js, take a look at the following resources:
+* **Backend:** Next.js route handlers in `src/app/api/*`, sharing one pipeline in `src/lib/submit.ts`
+  (origin check, size limit, rate limit, honeypot, zod validation, save, email via nodemailer).
+* **Database:** libSQL (SQLite-compatible) through `@libsql/client`, in `src/lib/db.ts`. One table, `submissions`,
+  created on first use. Locally it is a file (`data/`, git-ignored); in production use a hosted libSQL/Turso database
+  or keep the file on a server with a persistent disk.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm test               # validation + form pipeline tests (Node's built-in runner)
+npm run typecheck
+npm run lint
+npm run build
+npm run seo:check      # crawl a running copy: titles, descriptions, canonicals, structured data, links
+npm run prelaunch      # lists every placeholder still in the site (fails until they are all replaced)
+```
 
-## Deploy on Vercel
+`seo:check` and `prelaunch` are separate on purpose: the first proves the technical SEO, the second proves the content is real.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## SEO in short
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Every page has its own title, description, canonical URL and social card (`src/lib/seo.ts`).
+* Structured data: Organization, WebSite, BreadcrumbList on every page, BlogPosting on articles, FAQPage on the FAQ page.
+* `sitemap.xml`, `robots.txt`, an RSS feed (`/feed.xml`), a manifest, icons and a generated share image.
+* **Indexing is off until a real domain is set.** While `NEXT_PUBLIC_SITE_URL` is `localhost` (or unset),
+  `robots.txt` blocks everything and every page is `noindex`. Setting a real `https://` domain turns indexing on.
+
+## Form data (personal data)
+
+Submissions live in the `submissions` table. Only fields the forms collect are stored; consent is recorded.
+Nothing is logged, and the API never echoes data back. Export for staff: `npm run export:submissions > file.csv`
+(the file holds personal data, so keep it private and delete it when finished).
+
+## Hosting
+
+* **Easiest:** Vercel for the site plus a hosted libSQL/Turso database (`DATABASE_URL`, `DATABASE_AUTH_TOKEN`), and an SMTP provider for email.
+  Choose London or EU regions for UK GDPR.
+* **Or** a UK server/VPS running `npm run build && npm start` with the database file on a persistent disk.
+
+Before launch: run `npm run prelaunch`, set the real domain, get the privacy and cookie policies reviewed, and run `npm run seo:check` against the live URL.

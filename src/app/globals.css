@@ -1,26 +1,257 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/*
+ * Central Fostering design tokens.
+ * Navy is the confident brand colour (headings, buttons, footer). Lime green, warm orange and
+ * sky blue are small accents. Everything else is white space, so the photography does the talking.
+ * Contrast: white on navy-700+ and leaf-800+, and ink on tangerine, all pass WCAG AA for text.
+ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: #15183a;
+  --color-ink-soft: #565b73;
+  --color-cream: #f6f8fc;
+
+  /* Navy is the brand colour: #131b41 is the exact navy behind the supplied logo. */
+  --color-navy-50: #f1f3fa;
+  --color-navy-100: #e1e5f4;
+  --color-navy-200: #c0c8e6;
+  --color-navy-400: #5f6db3;
+  --color-navy-500: #3a4a96;
+  --color-navy-600: #283580;
+  --color-navy-700: #1d2760;
+  --color-navy-800: #131b41;
+  --color-navy-900: #0c1230;
+
+  /* The aperture's colours. Each has a light tint (backgrounds), a base (shapes) and a 700 (text on white, AA contrast). */
+  --color-leaf-50: #f0f8ea;
+  --color-leaf-100: #e0f0d4;
+  --color-leaf-200: #c4e1ad;
+  --color-leaf-500: #84be6a;
+  --color-leaf-600: #67a84a;
+  --color-leaf-700: #3f7a2a;
+  --color-leaf-800: #326022;
+  --color-leaf-900: #254719;
+
+  --color-tangerine-100: #fbeedd;
+  --color-tangerine-300: #efc08a;
+  --color-tangerine-400: #e5a257;
+  --color-tangerine-500: #d78d3c;
+  --color-tangerine-700: #9a5a12;
+
+  --color-sky-100: #e4f1fa;
+  --color-sky-300: #a9d2ee;
+  --color-sky-400: #55a0d7;
+  --color-sky-500: #3f8cc6;
+  --color-sky-700: #1f6396;
+
+  --color-berry-100: #f6e4f0;
+  --color-berry-400: #c86db0;
+  --color-berry-500: #b55197;
+  --color-berry-700: #8a2f72;
+
+  --color-ember-100: #fbe5dd;
+  --color-ember-500: #d65a36;
+  --color-ember-700: #a8401f;
+
+  --color-aqua-100: #dff6f2;
+  --color-aqua-400: #5fcdbc;
+  --color-aqua-500: #3fb8a6;
+  --color-aqua-700: #1b7d70;
+
+  --color-sun-100: #fdf3d9;
+  --color-sun-300: #f8d88f;
+  --color-sun-400: #f5c15e;
+  --color-sun-500: #e8ab36;
+  --color-sun-700: #8a6310;
+
+  --font-sans: var(--font-nunito-sans), system-ui, sans-serif;
+  --font-display: var(--font-poppins), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* The logo's colours in order around the aperture. Used as a thin accent strip and the scroll progress bar. */
+.logo-strip { background-image: linear-gradient(90deg, #d78d3c 0%, #b55197 17%, #f5c15e 34%, #d65a36 50%, #55a0d7 67%, #5fcdbc 84%, #84be6a 100%); }
+
+/*
+ * Base styles live in Tailwind's base layer. Unlayered CSS always beats layered CSS,
+ * so keeping these here lets utility classes like text-white override the default heading colour.
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: #fff;
+    color: var(--color-ink-soft);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    /* Long unbreakable strings (emails, URLs) wrap instead of forcing sideways scrolling on small phones. */
+    overflow-wrap: anywhere;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--color-navy-800);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-tangerine-500);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+ * ------------------------------------------------------------------
+ * Motion. Kept deliberately small: things fade and glide, nothing bounces.
+ * Everything animates only opacity / transform (cheap, runs on the GPU),
+ * and every effect is switched off for people who prefer reduced motion.
+ * ------------------------------------------------------------------
+ */
+
+/* Highlighted words in headings: a soft marker stroke behind the text that draws in. */
+.squiggle {
+  background-image: linear-gradient(transparent 64%, rgb(215 141 60 / 0.45) 64%, rgb(215 141 60 / 0.45) 92%, transparent 92%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 0 0.1em;
+  margin: 0 -0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
+@keyframes draw { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+.squiggle-draw { animation: draw 0.9s 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* Page-load entrance for hero content. Stagger with style="--d: 150ms". */
+@keyframes enter-up { from { opacity: 0.01; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes enter-slide { from { transform: translateY(18px); } to { transform: none; } }
+@keyframes enter-zoom { from { opacity: 0.01; transform: scale(0.95) translateY(14px); } to { opacity: 1; transform: none; } }
+.enter { animation: enter-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d, 0ms); }
+/* Headlines slide only (no fade), so they are visible from the first frame. */
+.enter-slide { animation: enter-slide 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d, 0ms); }
+.enter-zoom { animation: enter-zoom 1s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d, 0ms); }
+
+/* Each page fades in when you navigate. */
+@keyframes fade-in { from { opacity: 0.01; } to { opacity: 1; } }
+.page-fade { animation: fade-in 0.3s ease both; }
+
+/* Scroll reveal: only hides content when scripting is on, so no-JS users see everything. */
+.reveal {
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (scripting: enabled) {
+  .reveal:not(.is-visible) { opacity: 0; transform: translateY(22px); }
+  .reveal[data-reveal="left"]:not(.is-visible) { transform: translateX(-34px); }
+  .reveal[data-reveal="right"]:not(.is-visible) { transform: translateX(34px); }
+  .reveal[data-reveal="zoom"]:not(.is-visible) { transform: scale(0.94); }
+  /* Highlighter draws in once its heading has revealed. */
+  .reveal .squiggle { transition: background-size 0.9s 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .reveal:not(.is-visible) .squiggle { background-size: 0% 100%; }
+}
+
+/* Thin progress bar across the top, filled by scrolling (no JavaScript). */
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 4px;
+  display: none;
+  transform-origin: 0 50%;
+  background-image: linear-gradient(90deg, #d78d3c, #b55197, #f5c15e, #d65a36, #55a0d7, #5fcdbc, #84be6a);
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress { display: block; animation: grow-x linear both; animation-timeline: scroll(root); }
+}
+
+/* Background shapes drift slightly slower than the page as they pass through view (a gentle depth effect). */
+@keyframes drift { from { transform: translateY(36px); } to { transform: translateY(-36px); } }
+@supports (animation-timeline: view()) {
+  .drift { animation: drift linear both; animation-timeline: view(); }
+}
+
+/*
+ * Hero photograph, in four gentle layers (all compositor-only: transform and opacity):
+ *  1. the photo settles in once (zooms out and slides slightly into place),
+ *  2. then drifts very slowly (a deeper push-in, back and forth),
+ *  3. a navy veil fades away so the picture emerges from the brand colour on load,
+ *  4. a soft band of light sweeps across it every few seconds.
+ */
+@keyframes hero-settle { from { transform: scale(1.1) translate3d(2.5%, 0, 0); } to { transform: scale(1) translate3d(0, 0, 0); } }
+@keyframes hero-drift { from { transform: scale(1) translate3d(0, 0, 0); } to { transform: scale(1.08) translate3d(-2%, -1.2%, 0); } }
+.hero-photo {
+  animation: hero-settle 2.2s cubic-bezier(0.16, 0.8, 0.2, 1) forwards, hero-drift 26s ease-in-out 2.2s infinite alternate;
+  will-change: transform;
+}
+@keyframes hero-emerge { from { opacity: 1; } to { opacity: 0; } }
+.hero-veil { animation: hero-emerge 1.7s ease-out 0.1s both; }
+@keyframes hero-sheen {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  45%, 100% { transform: translateX(330%) skewX(-18deg); }
+}
+.hero-sheen::before {
+  content: "";
+  position: absolute;
+  inset: -10% auto -10% 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  animation: hero-sheen 12s ease-in-out 3.5s infinite;
+}
+@keyframes hero-parallax { to { translate: 0 7%; } }
+@supports (animation-timeline: scroll()) {
+  .hero-parallax { animation: hero-parallax linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+}
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 140s linear infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-slow { animation: float 8s ease-in-out infinite; }
+
+/* Cards lift gently on hover, and their icon tilts a touch. */
+.lift { transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease; }
+.lift:hover { transform: translateY(-5px); box-shadow: 0 20px 44px -20px rgb(19 27 65 / 0.38); }
+.lift > svg:first-child,
+.lift > div > svg:first-child { transition: transform 0.35s cubic-bezier(0.3, 1.5, 0.5, 1); }
+.lift:hover > svg:first-child,
+.lift:hover > div > svg:first-child { transform: translateY(-3px) rotate(-5deg) scale(1.08); }
+
+/* Lenis (smooth scroll) housekeeping, from its documentation. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { transition: none; }
+  .enter, .enter-slide, .enter-zoom, .squiggle-draw, .page-fade, .drift, .float-slow, .spin-slow, .hero-photo, .hero-parallax, .hero-sheen::before { animation: none !important; }
+  .hero-veil { display: none; }
+  .scroll-progress { display: none !important; }
+  .lift, .lift:hover, .lift svg { transition: none; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) and (scripting: enabled) {
+  .reveal:not(.is-visible) { opacity: 1; transform: none; }
+  .reveal:not(.is-visible) .squiggle { background-size: 100% 100%; }
+}
+
+/* Accordion marker */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(180deg); }
+
+.prose-body p { margin-bottom: 1.1rem; }
+.prose-body h2 { margin: 2.2rem 0 0.8rem; font-size: 1.6rem; }
+.prose-body h3 { margin: 1.6rem 0 0.6rem; font-size: 1.25rem; }
+.prose-body ul { margin: 0 0 1.2rem 1.2rem; list-style: disc; }
+.prose-body li { margin-bottom: 0.4rem; }
+.prose-body a { color: var(--color-navy-700); text-decoration: underline; text-underline-offset: 3px; }
