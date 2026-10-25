@@ -22,7 +22,7 @@ type PageMeta = {
   description: string;
   /** Path of this page, e.g. "/about". Becomes the canonical URL. */
   path: string;
-  /** Use the title exactly as written, without the "| Central Fostering" suffix. */
+  /** Use the title exactly as written, without the "| <site name>" suffix. */
   absoluteTitle?: boolean;
   type?: "website" | "article";
   publishedTime?: string;
@@ -65,18 +65,20 @@ export function organizationLd() {
     "@type": "Organization",
     "@id": `${siteUrl}/#organization`,
     name: site.name,
+    alternateName: site.shortName,
     url: siteUrl,
     description: site.description,
     slogan: site.tagline,
     logo: absoluteUrl(site.logoMark),
     image: absoluteUrl("/opengraph-image"),
     email: contact.email,
-    telephone: contact.phone,
+    telephone: contact.phoneHref.replace("tel:", ""),
     address: {
       "@type": "PostalAddress",
-      streetAddress: contact.address[0],
-      addressLocality: contact.address[1],
-      postalCode: contact.address[2],
+      streetAddress: contact.addressParts.street,
+      addressLocality: contact.addressParts.locality,
+      addressRegion: contact.addressParts.region,
+      postalCode: contact.addressParts.postcode,
       addressCountry: "GB",
     },
     areaServed: boroughs.filter((b) => b.covered).map((b) => ({ "@type": "AdministrativeArea", name: `${b.name}, London` })),
@@ -84,7 +86,7 @@ export function organizationLd() {
       {
         "@type": "ContactPoint",
         contactType: "customer service",
-        telephone: contact.phone,
+        telephone: contact.phoneHref.replace("tel:", ""),
         email: contact.email,
         areaServed: "GB",
         availableLanguage: "English",

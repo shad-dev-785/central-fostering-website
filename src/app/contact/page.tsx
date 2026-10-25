@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Contact our fostering team",
-  description: "Get in touch with Central Fostering in London by phone, email or our enquiry form. A friendly team is ready to answer your fostering questions.",
+  description: "Get in touch with Central Fostering Agency UK by phone, email or our enquiry form. A friendly team is ready to answer your fostering questions.",
   path: "/contact",
 });
 
@@ -17,7 +17,7 @@ export default function ContactPage() {
   const items = [
     { icon: <PhoneIcon />, label: "Call us", content: <a href={contact.phoneHref} className="text-xl font-bold text-navy-800 hover:text-leaf-700">{contact.phone}</a> },
     { icon: <MailIcon />, label: "Email us", content: <a href={`mailto:${contact.email}`} className="font-bold text-navy-800 hover:text-leaf-700 break-all">{contact.email}</a> },
-    { icon: <PinIcon />, label: "Visit us", content: <address className="not-italic text-ink-soft">{contact.address.join(", ")}</address> },
+    { icon: <PinIcon />, label: `Our office (${contact.addressParts.locality})`, content: <address className="not-italic text-ink-soft">{contact.address.join(", ")}<span className="mt-1 block text-sm">Our office is in {contact.addressParts.locality}. We recruit and support foster carers across London.</span></address> },
     { icon: <ClockIcon />, label: "Office hours", content: <span className="text-ink-soft">{contact.hours}</span> },
     { icon: <MoonIcon />, label: "Out of hours", content: <span className="text-ink-soft">{contact.outOfHours}</span> },
   ];

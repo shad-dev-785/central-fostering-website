@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Privacy policy",
-  description: "How Central Fostering collects, uses and protects the personal information you give us through this website.",
+  description: "How Central Fostering Agency UK collects, uses and protects the personal information you give us through this website.",
   path: "/privacy-policy",
 });
 
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             <h2>Who we are</h2>
             <p>
               {site.name} (&quot;we&quot;, &quot;us&quot;) is the data controller for personal information collected through this website.
-              You can contact us at {contact.email}, on {contact.phone}, or by post at {contact.address.join(", ")}.
+              You can contact us at {contact.email}, on {contact.phone}, or by post at our {contact.addressParts.locality} office: {contact.address.join(", ")}.
             </p>
 
             <h2>What we collect</h2>

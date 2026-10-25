@@ -248,7 +248,7 @@ export default function ApplyForm() {
             />
             <TextArea id="ap-notes" name="notes" label="Anything else you would like us to know?" rows={4} maxLength={1000} hint="Optional. Please don't include sensitive personal details here." value={v.notes} onChange={(x) => set("notes", x)} error={firstError(errors, "notes")} />
             <CheckboxField id="ap-consent" name="consent" checked={v.consent} onChange={(x) => set("consent", x)} error={firstError(errors, "consent")}>
-              I am happy for Central Fostering to contact me about this application and to store the details I have given.
+              I am happy for Central Fostering Agency UK to contact me about this application and to store the details I have given.
               See our{" "}
               <Link href="/privacy-policy" className="font-bold text-navy-700 underline underline-offset-2">
                 privacy policy

@@ -8,8 +8,8 @@ import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Foster carer allowances and support",
-  description: "How foster carers are supported with allowances, tax relief, training, a named social worker and a 24 hour advice line at Central Fostering.",
+  title: "Foster carer allowances",
+  description: "How foster carers are supported with allowances, tax relief, training, a named social worker and a 24 hour advice line at CFA.",
   path: "/finance-and-support",
 });
 

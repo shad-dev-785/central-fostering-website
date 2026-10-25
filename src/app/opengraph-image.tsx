@@ -30,8 +30,8 @@ export default function OpengraphImage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={mark} width={360} height={360} alt="" style={{ position: "absolute", right: 90, top: 135 }} />
         <div style={{ fontSize: 34, letterSpacing: 6, textTransform: "uppercase", color: "#efc08a", marginBottom: 24, display: "flex" }}>Fostering agency in London</div>
-        <div style={{ fontSize: 112, fontWeight: 700, lineHeight: 1.05, display: "flex" }}>{site.name}</div>
-        <div style={{ fontSize: 44, marginTop: 28, color: "#e1e5f4", maxWidth: 800, display: "flex" }}>{site.tagline}</div>
+        <div style={{ fontSize: 84, fontWeight: 700, lineHeight: 1.08, maxWidth: 700, display: "flex" }}>{site.name}</div>
+        <div style={{ fontSize: 40, marginTop: 28, color: "#e1e5f4", maxWidth: 680, display: "flex" }}>{site.tagline}</div>
       </div>
     ),
     size,

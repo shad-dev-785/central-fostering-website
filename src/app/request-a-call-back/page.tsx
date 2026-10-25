@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Request a call back",
-  description: "Leave your number and the best time to call, and a friendly member of the Central Fostering team will ring you to talk about fostering.",
+  description: "Leave your number and the best time to call, and a friendly member of the CFA team will ring you to talk about fostering.",
   path: "/request-a-call-back",
 });
 

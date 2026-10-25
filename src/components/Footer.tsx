@@ -28,7 +28,10 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <PinIcon className="mt-1 shrink-0 text-tangerine-300" width={20} height={20} />
-                <address className="not-italic">{contact.address.join(", ")}</address>
+                <address className="not-italic">
+                  <span className="block font-semibold text-white">Our office is in {contact.addressParts.locality}</span>
+                  {contact.address.join(", ")}
+                </address>
               </li>
               <li className="flex items-start gap-3">
                 <ClockIcon className="mt-1 shrink-0 text-tangerine-300" width={20} height={20} />

@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { site } from "@/config/site";
 import Link from "next/link";
 import { posts } from "@/content/posts";
 import { stories } from "@/content/stories";
@@ -13,8 +14,8 @@ import { ButtonLink, Container, Section, SectionHeading, TextLink } from "@/comp
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Fostering agency in London | Central Fostering",
-  description: "Central Fostering is a London fostering agency. Become a foster carer with expert training, a named social worker and 24/7 support. Enquire today.",
+  title: `Fostering agency in London | ${site.name}`,
+  description: "Central Fostering Agency UK (CFA) is a fostering agency. Become a foster carer with expert training, a named social worker and 24/7 support. Enquire today.",
   path: "/",
   absoluteTitle: true,
 });
@@ -52,7 +53,7 @@ export default function HomePage() {
         <Container className="relative pb-16 pt-[19rem] sm:pb-20 sm:pt-[25rem] lg:min-h-[44rem] lg:pb-28 lg:pt-24">
           <div className="max-w-xl">
             <p className="enter-slide font-display text-2xl font-light text-white/85 sm:text-3xl">Welcome to</p>
-            <h1 style={d(100)} className="enter-slide mt-1 text-5xl font-semibold leading-[1.05] !text-white sm:text-6xl lg:text-[4.4rem]">Central Fostering</h1>
+            <h1 style={d(100)} className="enter-slide mt-1 text-5xl font-semibold leading-[1.05] !text-white sm:text-6xl lg:text-[4rem]">{site.name}</h1>
             <p style={d(220)} className="enter mt-5 text-xl font-medium text-white sm:text-2xl">
               Where every child finds a <span className="squiggle squiggle-draw">place to belong.</span>
             </p>
@@ -65,7 +66,7 @@ export default function HomePage() {
               ))}
             </ul>
             <p style={d(420)} className="enter mt-6 text-lg text-white/90">
-              Central Fostering is a fostering agency in London. We help ordinary people open their homes to children and
+              Central Fostering Agency UK (CFA) is a fostering agency in London. We help ordinary people open their homes to children and
               young people who need them. If you have a spare room and room in your life, we would love to hear from you.
             </p>
             <div style={d(500)} className="enter mt-8 flex flex-wrap gap-4">
@@ -102,7 +103,7 @@ export default function HomePage() {
         </Reveal>
       </Section>
 
-      {/* Why Central: banner with overlapping cards */}
+      {/* Why CFA: banner with overlapping cards */}
       <section className="relative overflow-x-clip">
         <div className="relative overflow-hidden bg-navy-800 pb-40 pt-20 text-center text-white sm:pb-44 sm:pt-24">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -111,7 +112,7 @@ export default function HomePage() {
             <Backdrop variant="c" className="absolute -bottom-40 -right-24 h-[120%] w-auto min-w-[26rem] text-navy-600/40" />
           </div>
           <Container narrow className="relative">
-            <h2 className="text-3xl font-semibold text-white sm:text-5xl">Why foster with Central?</h2>
+            <h2 className="text-3xl font-semibold text-white sm:text-5xl">Why foster with CFA?</h2>
             <p className="mt-4 text-lg text-white/90">
               A safe home is built by people who are backed up. Here is how we back you up.
             </p>

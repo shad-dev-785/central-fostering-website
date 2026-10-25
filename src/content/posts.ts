@@ -60,6 +60,7 @@ export const posts: Post[] = [
   {
     slug: "what-happens-at-a-home-visit",
     title: "What happens at a fostering home visit?",
+    metaTitle: "What happens at a home visit?",
     date: "2026-08-04",
     category: "Advice",
     readingMinutes: 3,
@@ -93,6 +94,7 @@ export const posts: Post[] = [
   {
     slug: "why-london-needs-more-foster-carers",
     title: "Why London needs more foster carers",
+    metaTitle: "Why London needs foster carers",
     date: "2026-06-22",
     category: "News",
     readingMinutes: 3,

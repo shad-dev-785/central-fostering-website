@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Areas we cover in London",
-  description: "Central Fostering recruits foster carers across London boroughs, so children can stay close to their school, friends and family. See where we work.",
+  description: "CFA recruits foster carers across London boroughs, so children can stay close to their school, friends and family. See where we work.",
   path: "/areas-we-cover",
 });
 

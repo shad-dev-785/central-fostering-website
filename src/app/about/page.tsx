@@ -8,8 +8,8 @@ import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "About our London fostering agency",
-  description: "Meet Central Fostering, a London fostering agency built around children and carers. Learn our values and how we support every foster family.",
+  title: "About our fostering agency",
+  description: "Meet Central Fostering Agency UK (CFA), a fostering agency built around children and carers. Learn our values and how we support every foster family.",
   path: "/about",
 });
 
@@ -36,7 +36,7 @@ export default function AboutPage() {
             <SectionHeading eyebrow="Who we are" title="Small enough to know you, strong enough to support you" />
             <div className="prose-body text-lg text-ink-soft">
               <p>
-                Central Fostering is a fostering agency working with London children&apos;s services to find loving
+                Central Fostering Agency UK (CFA) is a fostering agency working with children&apos;s services to find loving
                 homes for children and young people who cannot live with their own families.
               </p>
               <p>
@@ -98,7 +98,7 @@ export default function AboutPage() {
         <Section tone="navy">
           <SectionHeading eyebrow="Regulation" title="Registered and inspected" />
           <p className="max-w-3xl text-lg text-ink-soft">
-            Central Fostering is registered with Ofsted
+            CFA is registered with Ofsted
             {regulation.ofstedUrn ? ` (URN ${regulation.ofstedUrn})` : ""}.{" "}
             {regulation.ofstedReportUrl && (
               <a href={regulation.ofstedReportUrl} className="font-bold text-navy-700 underline underline-offset-4" target="_blank" rel="noopener noreferrer">

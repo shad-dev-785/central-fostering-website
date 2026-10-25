@@ -8,8 +8,8 @@ import { ButtonLink, Section, SectionHeading, TextLink } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Become a foster carer in London",
-  description: "Could you foster? Find out who can become a foster carer in London, what it takes, and how Central Fostering supports you from your first enquiry.",
+  title: "Become a London foster carer",
+  description: "Could you foster? Find out who can become a foster carer in London, what it takes, and how Central Fostering Agency UK supports you from your first enquiry.",
   path: "/become-a-foster-carer",
 });
 

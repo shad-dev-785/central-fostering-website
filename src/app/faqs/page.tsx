@@ -6,7 +6,7 @@ import { Section } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Fostering FAQs: your questions answered",
+  title: "Fostering FAQs",
   description: "Straight answers about becoming a foster carer: who can foster, how long approval takes, allowances, support and more. Ask us anything.",
   path: "/faqs",
 });

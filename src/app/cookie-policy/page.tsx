@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Cookie policy",
-  description: "Which cookies the Central Fostering website uses. Currently none beyond what is strictly necessary.",
+  description: "Which cookies the Central Fostering Agency UK website uses. Currently none beyond what is strictly necessary.",
   path: "/cookie-policy",
 });
 

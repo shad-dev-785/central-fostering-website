@@ -6,8 +6,8 @@ import { ButtonLink, Section, SectionHeading } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "How fostering works: the process",
-  description: "From first call to first placement: a clear, step-by-step guide to becoming a foster carer with Central Fostering in London, including checks and training.",
+  title: "How fostering works",
+  description: "From first call to first placement: a clear, step-by-step guide to becoming a foster carer with Central Fostering Agency UK, including checks and training.",
   path: "/fostering-process",
 });
 

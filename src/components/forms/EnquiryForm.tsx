@@ -81,7 +81,7 @@ export default function EnquiryForm() {
         error={firstError(errors, "message")}
       />
       <CheckboxField id="enq-consent" name="consent" required error={firstError(errors, "consent")}>
-        I am happy for Central Fostering to contact me about my enquiry. See our{" "}
+        I am happy for Central Fostering Agency UK to contact me about my enquiry. See our{" "}
         <Link href="/privacy-policy" className="font-bold text-navy-700 underline underline-offset-2">
           privacy policy
         </Link>

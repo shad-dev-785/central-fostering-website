@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Apply to foster",
-  description: "Start your application to become a foster carer in London with Central Fostering. It takes about five minutes and commits you to nothing.",
+  description: "Start your application to become a foster carer with Central Fostering Agency UK. It takes about five minutes and commits you to nothing.",
   path: "/apply",
 });
 
