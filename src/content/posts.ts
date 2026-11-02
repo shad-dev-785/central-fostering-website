@@ -92,9 +92,9 @@ export const posts: Post[] = [
     ],
   },
   {
-    slug: "why-london-needs-more-foster-carers",
-    title: "Why London needs more foster carers",
-    metaTitle: "Why London needs foster carers",
+    slug: "why-the-midlands-needs-more-foster-carers",
+    title: "Why the Midlands needs more foster carers",
+    metaTitle: "Why the Midlands needs carers",
     date: "2026-06-22",
     category: "News",
     readingMinutes: 3,
@@ -119,7 +119,7 @@ export const posts: Post[] = [
       },
       {
         type: "p",
-        text: "If you live in London and have a spare room and room in your life, we would love to talk to you.",
+        text: "If you live in the East or West Midlands and have a spare room and room in your life, we would love to talk to you.",
       },
     ],
   },

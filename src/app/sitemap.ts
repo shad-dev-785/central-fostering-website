@@ -17,7 +17,7 @@ const pages: Entry[] = [
   { path: "/request-a-call-back", priority: 0.7, changeFrequency: "yearly" },
   { path: "/about", priority: 0.7, changeFrequency: "yearly" },
   { path: "/areas-we-cover", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/stories", priority: 0.6, changeFrequency: "monthly" },
+  { path: "/our-team", priority: 0.6, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/privacy-policy", priority: 0.2, changeFrequency: "yearly" },
   { path: "/cookie-policy", priority: 0.2, changeFrequency: "yearly" },

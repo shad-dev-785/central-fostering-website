@@ -1,4 +1,5 @@
 import { site } from "@/config/site";
+import girlFrost from "@/assets/photos/girl-frost.jpg";
 import { Backdrop, PhotoSlot } from "@/components/Art";
 import CtaBand from "@/components/CtaBand";
 import { HeartIcon, HomeIcon, ShieldIcon, UsersIcon } from "@/components/Icons";
@@ -16,8 +17,8 @@ export const metadata = pageMetadata({
 const values = [
   { icon: <HeartIcon />, title: "Children first", text: "Every decision starts with one question: is this right for the child?" },
   { icon: <UsersIcon />, title: "Carers are partners", text: "You are the expert on the child in your home. We listen, and we support you." },
-  { icon: <ShieldIcon />, title: "Safe and honest", text: "Safeguarding comes first, and we are open about both the joys and the challenges." },
-  { icon: <HomeIcon />, title: "Rooted in London", text: "Local carers keep children close to their schools, friends and communities." },
+  { icon: <ShieldIcon />, title: "Safe and honest", text: "Safeguarding comes first. We're open about the joys and the challenges." },
+  { icon: <HomeIcon />, title: "Rooted in the Midlands", text: "Local carers keep children close to their schools, friends and communities." },
 ];
 
 export default function AboutPage() {
@@ -26,7 +27,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About us"
-        title="A London fostering agency built around people"
+        title="A Midlands fostering agency built around people"
         intro="We find, train and support the carers who give children a safe place to grow up."
       />
 
@@ -36,22 +37,28 @@ export default function AboutPage() {
             <SectionHeading eyebrow="Who we are" title="Small enough to know you, strong enough to support you" />
             <div className="prose-body text-lg text-ink-soft">
               <p>
-                Central Fostering Agency UK (CFA) is a fostering agency working with children&apos;s services to find loving
-                homes for children and young people who cannot live with their own families.
+                Central Fostering Agency UK (CFA) works with children&apos;s services to find loving homes for children and
+                young people who can&apos;t live with their own families.
               </p>
               <p>
-                We believe good fostering comes from good relationships. That is why every carer has a named social
-                worker who knows them and their family, and why we keep our support practical: clear answers, quick
-                call backs and help when it matters.
+                Good fostering comes from good relationships. So every carer has a named social worker who knows them
+                and their family. Our support is practical: clear answers, quick call backs, help when it matters.
               </p>
               <p>
-                Our carers come from every background. What they share is patience, honesty and a wish to make a
-                difference.
+                Our carers come from every background. They share patience, honesty and a wish to make a difference.
               </p>
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <div className="relative"><Backdrop variant="a" className="absolute -right-8 -top-8 h-[115%] w-[115%] text-leaf-100" /><PhotoSlot label="Carer and child at home together" tone="navy" className="relative shadow-xl" /></div>
+            <div className="relative"><Backdrop variant="a" className="absolute -right-8 -top-8 h-[115%] w-[115%] text-leaf-100" /><PhotoSlot
+              src={girlFrost}
+              alt="A young girl in a white bobble hat and brown winter coat standing on a frosty path"
+              objectPosition="24% 50%"
+              ratio="aspect-square"
+              label="Carer and child at home together"
+              tone="navy"
+              className="relative shadow-xl"
+            /></div>
           </Reveal>
         </div>
       </Section>
@@ -112,7 +119,7 @@ export default function AboutPage() {
       <Section tone="white">
         <div className="text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">Want to know more?</h2>
-          <p className="mx-auto mt-3 max-w-xl text-lg text-ink-soft">We are always happy to talk, and there is never any pressure.</p>
+          <p className="mx-auto mt-3 max-w-xl text-lg text-ink-soft">Always happy to talk. Never any pressure.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/contact" arrow>Get in touch</ButtonLink>
             <ButtonLink href="/become-a-foster-carer" variant="outline">Could you foster?</ButtonLink>

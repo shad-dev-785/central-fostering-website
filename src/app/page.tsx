@@ -2,20 +2,24 @@ import type { CSSProperties } from "react";
 import { site } from "@/config/site";
 import Link from "next/link";
 import { posts } from "@/content/posts";
-import { stories } from "@/content/stories";
+import { team } from "@/content/team";
 import { Backdrop, HeartBullet, IconCommunity, IconHome, IconSupport, IconTherapy, IconTraining, IconShield, PhotoSlot } from "@/components/Art";
-import { FaqList, PostCards, ProcessTimeline, StoryCards, TypeCards } from "@/components/Cards";
+import { FaqList, PostCards, ProcessTimeline, TeamCards, TypeCards } from "@/components/Cards";
 import CtaBand from "@/components/CtaBand";
 import CallbackForm from "@/components/forms/CallbackForm";
 import Reveal from "@/components/Reveal";
+import familyStudio from "@/assets/photos/family-studio.jpg";
+import momentsHug from "@/assets/photos/moments-hug.jpg";
+import momentsFamily from "@/assets/photos/moments-family.jpg";
+import momentsPlay from "@/assets/photos/moments-play.jpg";
 import HeroPhoto from "@/components/HeroPhoto";
 import { LogoWatermark } from "@/components/Logo";
 import { ButtonLink, Container, Section, SectionHeading, TextLink } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: `Fostering agency in London | ${site.name}`,
-  description: "Central Fostering Agency UK (CFA) is a fostering agency. Become a foster carer with expert training, a named social worker and 24/7 support. Enquire today.",
+  title: `Birmingham & Midlands fostering | ${site.name}`,
+  description: "Central Fostering Agency UK (CFA) is a Birmingham-based fostering agency recruiting foster carers across the East and West Midlands. Enquire today.",
   path: "/",
   absoluteTitle: true,
 });
@@ -23,21 +27,27 @@ export const metadata = pageMetadata({
 /** Stagger for the load-in animation: style={d(200)} delays an .enter element by 200ms. */
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
-const pillars = ["Caring homes", "Real support", "London families"];
+const pillars = ["Caring homes", "Real support", "Midlands families"];
 
 const welcome = ["Single or a couple", "Renters welcome", "Any background", "LGBTQ+ friendly", "Working or retired"];
 
 const quick = [
-  { Icon: IconHome, t: "Could you foster?", d: "You need to be 21 or over, with a spare bedroom and time to give.", href: "/become-a-foster-carer" },
-  { Icon: IconCommunity, t: "Types of fostering", d: "Short term, long term, emergency, short breaks and more.", href: "/types-of-fostering" },
-  { Icon: IconShield, t: "Finance and support", d: "Allowances, training and help every step of the way.", href: "/finance-and-support" },
-  { Icon: IconTraining, t: "Your journey", d: "From your first call to your first placement, step by step.", href: "/fostering-process" },
+  { Icon: IconHome, t: "Could you foster?", d: "21 or over, with a spare bedroom and time to give? You could.", href: "/become-a-foster-carer" },
+  { Icon: IconCommunity, t: "Types of fostering", d: "Short term, long term, emergency, short breaks. Pick what fits.", href: "/types-of-fostering" },
+  { Icon: IconShield, t: "Finance and support", d: "Allowances, training and backup at every step.", href: "/finance-and-support" },
+  { Icon: IconTraining, t: "Your journey", d: "First call to first placement, one step at a time.", href: "/fostering-process" },
 ];
 
 const why = [
-  { Icon: IconSupport, t: "Support, day and night", d: "A named social worker, regular visits and an advice line that answers around the clock. When things get hard, someone picks up." },
-  { Icon: IconTherapy, t: "Training that grows with you", d: "From preparation training before approval to ongoing courses on trauma and behaviour, you will always feel equipped for what comes next." },
-  { Icon: IconCommunity, t: "A community that gets it", d: "Carer groups, family events and friendships with people who understand, long after a placement ends." },
+  { Icon: IconSupport, t: "Support, day and night", d: "A named social worker. Regular visits. An advice line that always picks up." },
+  { Icon: IconTherapy, t: "Training that grows with you", d: "Preparation training first, then ongoing courses on trauma and behaviour. You're ready for what comes next." },
+  { Icon: IconCommunity, t: "A community that gets it", d: "Carer groups, family events and friends who understand. Long after a placement ends." },
+];
+
+const moments = [
+  { src: momentsHug, alt: "A woman and a girl hugging warmly, both laughing", caption: "Warm welcomes", tone: "leaf" as const },
+  { src: momentsFamily, alt: "A family of five smiling together on a sofa", caption: "Families of every kind", tone: "navy" as const },
+  { src: momentsPlay, alt: "A boy and a woman lying on the floor, pressing their palms together while drawing", caption: "Everyday joy", tone: "leaf" as const },
 ];
 
 const points = ["Your own supervising social worker", "24 hour advice line for approved carers", "Carer groups and peer support", "Respite and short breaks when you need them"];
@@ -53,7 +63,7 @@ export default function HomePage() {
         <Container className="relative pb-16 pt-[19rem] sm:pb-20 sm:pt-[25rem] lg:min-h-[44rem] lg:pb-28 lg:pt-24">
           <div className="max-w-xl">
             <p className="enter-slide font-display text-2xl font-light text-white/85 sm:text-3xl">Welcome to</p>
-            <h1 style={d(100)} className="enter-slide mt-1 text-5xl font-semibold leading-[1.05] !text-white sm:text-6xl lg:text-[4rem]">{site.name}</h1>
+            <h1 style={d(100)} className="enter-slide mt-1 text-5xl font-semibold leading-[1.05] !text-white sm:text-6xl lg:text-[3.5rem]">{site.name}</h1>
             <p style={d(220)} className="enter mt-5 text-xl font-medium text-white sm:text-2xl">
               Where every child finds a <span className="squiggle squiggle-draw">place to belong.</span>
             </p>
@@ -66,8 +76,7 @@ export default function HomePage() {
               ))}
             </ul>
             <p style={d(420)} className="enter mt-6 text-lg text-white/90">
-              Central Fostering Agency UK (CFA) is a fostering agency in London. We help ordinary people open their homes to children and
-              young people who need them. If you have a spare room and room in your life, we would love to hear from you.
+              Central Fostering Agency UK (CFA) is a Birmingham-based fostering agency, recruiting foster carers across the East and West Midlands. Ordinary people. Extraordinary difference. Got a spare room and room in your life? Let&apos;s talk.
             </p>
             <div style={d(500)} className="enter mt-8 flex flex-wrap gap-4">
               <ButtonLink href="/become-a-foster-carer" variant="light" arrow>
@@ -114,7 +123,7 @@ export default function HomePage() {
           <Container narrow className="relative">
             <h2 className="text-3xl font-semibold text-white sm:text-5xl">Why foster with CFA?</h2>
             <p className="mt-4 text-lg text-white/90">
-              A safe home is built by people who are backed up. Here is how we back you up.
+              Great foster homes run on great backup. Here&apos;s ours.
             </p>
           </Container>
         </div>
@@ -137,13 +146,19 @@ export default function HomePage() {
           <div className="mt-20 grid items-center gap-12 lg:grid-cols-2">
               <Reveal variant="left" className="relative">
                 <Backdrop variant="c" className="absolute -left-10 -top-8 h-[115%] w-[115%] text-tangerine-100" />
-                <PhotoSlot label="Foster carer and child cooking together" tone="leaf" className="relative shadow-xl" />
+                <PhotoSlot
+                  src={familyStudio}
+                  alt="A smiling family of four sitting together on a white studio floor, with a toddler holding a pink balloon"
+                  cutout
+                  ratio="aspect-[7/5]"
+                  label="Foster carer and child cooking together"
+                  className="relative lg:-mx-6"
+                />
               </Reveal>
               <Reveal variant="right">
                 <h3 className="text-3xl font-semibold">You will never be doing this alone</h3>
                 <p className="mt-4 text-lg">
-                  Fostering is one of the most rewarding things you can do, and sometimes one of the hardest. That is why
-                  we put so much around you.
+                  It&apos;s rewarding. It&apos;s sometimes hard. That&apos;s why we put so much around you.
                 </p>
                 <ul className="mt-5 space-y-3">
                   {points.map((p, i) => (
@@ -165,9 +180,9 @@ export default function HomePage() {
       <Section tone="leaf">
         <SectionHeading
           eyebrow="Ways to foster"
-          title="Whatever you can offer, there is a way to foster"
-          highlight="a way to foster"
-          intro="Whether you can give a few nights a month or a home for years, there is a type of fostering that could fit your life."
+          title="A few nights or a few years: you choose"
+          highlight="you choose"
+          intro="Short breaks, short stays, long-term homes. Whatever you can offer, there's a fit."
         />
         <TypeCards limit={6} />
         <p className="mt-10 text-center">
@@ -177,14 +192,43 @@ export default function HomePage() {
         </p>
       </Section>
 
+      {/* Moments: a strip of photographs between the types and the journey */}
+      <Section tone="cream">
+        <SectionHeading
+          center
+          eyebrow="Life as a foster family"
+          title="Small moments, big difference"
+          highlight="big difference"
+          intro="Fostering is made of ordinary days: homework, laughter and a hug at the end of a hard one."
+        />
+        <div className="grid gap-6 md:grid-cols-3">
+          {moments.map((m, i) => (
+            <Reveal key={m.caption} delay={i * 90}>
+              <figure>
+                <PhotoSlot
+                  src={m.src}
+                  alt={m.alt}
+                  label={m.caption}
+                  tone={m.tone}
+                  ratio="aspect-[4/3]"
+                  sizes="(min-width: 768px) 360px, 100vw"
+                  className="shadow-lg"
+                />
+                <figcaption className="mt-4 text-center font-display text-lg font-medium text-navy-800">{m.caption}</figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
       {/* Journey */}
       <Section tone="white">
         <SectionHeading
           center
           eyebrow="Your journey"
-          title="Your journey, one clear step at a time"
-          highlight="one clear step"
-          intro="It usually takes four to six months. Here is what to expect, with no surprises."
+          title="Six clear steps, no surprises"
+          highlight="no surprises"
+          intro="About four to six months, start to finish. Here's the road ahead."
         />
         <ProcessTimeline />
         <p className="mt-12 text-center">
@@ -197,11 +241,12 @@ export default function HomePage() {
       {/* Promise band */}
       <Section tone="deepNavy" className="!py-14 sm:!py-20">
         <Reveal>
-          <div className="grid gap-8 text-center sm:grid-cols-3">
+          <div className="grid gap-10 text-center sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {[
-              ["24/7", "advice line for approved carers"],
-              ["London", "local children, local carers"],
-              ["No pressure", "enquiring never commits you to anything"],
+              ["24/7", "Advice line for approved carers, 365 days a year"],
+              ["21+", "Minimum age. Single, couple, renting or owning"],
+              ["4–6", "Months, usually, from application to approval"],
+              ["£0", "To enquire, with no obligation to go further"],
             ].map(([big, small]) => (
               <div key={big}>
                 <p className="font-display text-4xl font-semibold text-tangerine-300 sm:text-5xl">{big}</p>
@@ -212,12 +257,12 @@ export default function HomePage() {
         </Reveal>
       </Section>
 
-      {/* Stories */}
+      {/* Team */}
       <Section tone="navy">
-        <SectionHeading eyebrow="Carer stories" title="Ordinary people, extraordinary homes" highlight="extraordinary homes" intro="Fostering is a series of small, steady kindnesses. Here are some of them." />
-        <StoryCards items={stories} />
+        <SectionHeading eyebrow="Our team" title="Meet the people behind CFA" highlight="people behind CFA" intro="Experienced social workers and leaders. Safe, stable homes for children across the Midlands." />
+        <TeamCards items={team} />
         <p className="mt-10">
-          <TextLink href="/stories">More stories</TextLink>
+          <TextLink href="/our-team">Read the full profiles</TextLink>
         </p>
       </Section>
 
@@ -227,8 +272,7 @@ export default function HomePage() {
           <Reveal>
             <h2 className="text-3xl font-semibold sm:text-5xl">Not sure yet? Let&apos;s talk it through.</h2>
             <p className="mt-5 text-lg text-white/90">
-              Leave your number and the best time to ring. A friendly member of our team will call to answer your
-              questions, with no pressure and no obligation.
+              Leave your number and a good time to ring. We&apos;ll call, answer your questions and keep it pressure-free.
             </p>
           </Reveal>
           <Reveal delay={120}>

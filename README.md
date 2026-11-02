@@ -1,6 +1,6 @@
 # Central Fostering website
 
-A fostering agency website for London: Next.js 16 (App Router), TypeScript, Tailwind CSS 4.
+A website for a Birmingham-based fostering agency recruiting across the East and West Midlands: Next.js 16 (App Router), TypeScript, Tailwind CSS 4.
 The public pages are static. Three forms (enquiry, call back, apply) post to small API routes that validate,
 store the submission in a database and email the agency.
 
@@ -21,11 +21,12 @@ Copy `.env.example` to `.env.local` for email and database settings. Without the
 | Name, phone, email, address, social links, Ofsted details, **logo** | `src/config/site.ts` |
 | Menu and footer links | `src/config/site.ts` |
 | Fostering types, FAQs, process steps, support list | `src/content/fostering.ts` |
-| Carer stories (samples right now) | `src/content/stories.ts` |
+| Team profiles and photos | `src/content/team.ts`, `src/assets/team/` |
 | Blog posts | `src/content/posts.ts` |
-| Boroughs covered | `src/content/areas.ts` |
+| Areas covered (East and West Midlands) | `src/content/areas.ts` |
 | Colours and fonts | `src/app/globals.css` (tokens) and `src/app/layout.tsx` (fonts) |
-| Photos | `<PhotoSlot src="/photos/name.jpg" alt="..." />` (put files in `public/photos/`) |
+| Photos | Put the file in `src/assets/photos/`, shrink it with `npm run photo:optimise -- --width=1600 <in> <out>`, then `<PhotoSlot src={photo} alt="what the photo shows" />` (import the file at the top of the page). White-background studio photos: add `cutout` so the white blends into the page. |
+| Home page hero photo | `src/assets/photos/hero-sunset.jpg` (see `src/components/HeroPhoto.tsx`) |
 
 ## Backend and database
 
@@ -65,7 +66,7 @@ Nothing is logged, and the API never echoes data back. Export for staff: `npm ru
 ## Hosting
 
 * **Easiest:** Vercel for the site plus a hosted libSQL/Turso database (`DATABASE_URL`, `DATABASE_AUTH_TOKEN`), and an SMTP provider for email.
-  Choose London or EU regions for UK GDPR.
+  Choose UK (London) or EU regions for UK GDPR.
 * **Or** a UK server/VPS running `npm run build && npm start` with the database file on a persistent disk.
 
 Before launch: run `npm run prelaunch`, set the real domain, get the privacy and cookie policies reviewed, and run `npm run seo:check` against the live URL.

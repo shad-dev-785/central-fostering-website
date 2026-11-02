@@ -1,31 +1,31 @@
 import Image from "next/image";
-import heroPhoto from "@/assets/hero-family.jpg";
+import heroPhoto from "@/assets/photos/hero-sunset.jpg";
 
 /**
  * The home page hero photograph. It is meant to sit in a NEGATIVE z-index layer (-z-10) of an `isolate`d section,
  * so the headline and buttons render on top of it. A navy fade keeps the text readable and leaves the family clear.
  *
- * To change the picture, save a new photo over src/assets/hero-family.jpg (then `npm run photo:optimise -- src/assets/hero-family.jpg`).
- * Next.js creates the smaller sizes, the modern formats and the blurred preview automatically.
+ * To change the picture, import a new photo above (src/assets/photos/hero-sunset.jpg is already flipped so the people sit on the
+ * right; `npm run photo:optimise -- <file>` shrinks one). Next.js creates the smaller sizes, formats and blurred preview automatically.
  *
  * The photo moves in layers (see .hero-photo, .hero-veil and .hero-sheen in globals.css): it emerges from navy, settles in,
  * drifts slowly, and a soft band of light crosses it now and then.
- * On large screens the frame is enlarged and anchored left so the family sits on the right, away from the text.
+ * On large screens the photo starts 10% in from the left (that strip blends into the navy fade) so the people sit right of the text.
  */
 export default function HeroPhoto() {
   return (
     <>
-      <div className="hero-parallax absolute inset-0 lg:origin-[0%_44%] lg:scale-[1.35] xl:scale-[1.28]">
+      <div className="hero-parallax hero-fade-left absolute inset-0 lg:left-[10%]">
         <Image
           src={heroPhoto}
-          alt="A family of five laughing together on an autumn woodland path"
+          alt="A father with his daughter on his shoulders, holding up a toy plane in a grassy field at sunset"
           fill
           priority
           fetchPriority="high"
-          sizes="(min-width: 1024px) 135vw, 100vw"
+          sizes="100vw"
           quality={75}
           placeholder="blur"
-          className="hero-photo object-cover object-[55%_30%] lg:object-[0%_0%]"
+          className="hero-photo object-cover object-[64%_40%] lg:object-[60%_40%]"
         />
       </div>
       {/* A soft band of light that sweeps across the photo every few seconds. */}

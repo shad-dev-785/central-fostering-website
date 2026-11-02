@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -55,6 +55,7 @@ export type SlotTone = keyof typeof slotTones;
 /**
  * Where a photograph goes. Pass `src` (a file in /public) to show the real photo; without it
  * a calm placeholder is drawn with a visible "Photo placeholder" label so it is never forgotten.
+ * Real photos are animated gently (see .photo-img and .photo-parallax in globals.css); all of it is off for reduced motion.
  */
 export function PhotoSlot({
   src,
@@ -64,8 +65,12 @@ export function PhotoSlot({
   ratio = "aspect-[4/3]",
   className = "",
   priority = false,
+  cutout = false,
+  objectPosition,
+  sizes = "(min-width: 1024px) 50vw, 100vw",
 }: {
-  src?: string;
+  /** A photo imported from src/assets (best: Next.js adds a blurred preview and the size) or a path in /public. */
+  src?: string | StaticImageData;
   alt?: string;
   /** Brief for whoever supplies the photo, e.g. "Family laughing in a garden". */
   label: string;
@@ -73,11 +78,37 @@ export function PhotoSlot({
   ratio?: string;
   className?: string;
   priority?: boolean;
+  /**
+   * For photos shot on a plain WHITE background: the white is blended away (multiply), so the people appear to sit
+   * directly on the page, over any coloured shape placed behind. The bottom edge fades so no floor line shows.
+   */
+  cutout?: boolean;
+  /** Which part of the photo stays in view when it is cropped to the frame, e.g. "25% 50%" (x y). */
+  objectPosition?: string;
+  /** Tells the browser how wide the photo is shown, so it downloads the right size. */
+  sizes?: string;
 }) {
+  const isCutout = cutout && Boolean(src);
+  const fade = "linear-gradient(to bottom, #000 78%, transparent 100%)";
   return (
-    <div className={`relative overflow-hidden rounded-[2rem] rounded-br-[5rem] bg-gradient-to-br ${slotTones[tone]} ${ratio} ${className}`}>
+    <div
+      className={`relative overflow-hidden ${isCutout ? "mix-blend-multiply" : `rounded-[2rem] rounded-br-[5rem] bg-gradient-to-br ${slotTones[tone]}`} ${ratio} ${className}`}
+      style={isCutout ? { maskImage: fade, WebkitMaskImage: fade } : undefined}
+    >
       {src ? (
-        <Image src={src} alt={alt} fill priority={priority} sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        // The inner box is a little taller than the frame, so the photo can shift (parallax) without showing an edge.
+        <div className="photo-parallax absolute left-0 right-0 -bottom-[6%] -top-[6%]">
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            priority={priority}
+            sizes={sizes}
+            placeholder={typeof src === "string" ? "empty" : "blur"}
+            className="photo-img object-cover"
+            style={objectPosition ? { objectPosition } : undefined}
+          />
+        </div>
       ) : (
         <>
           <Silhouettes />

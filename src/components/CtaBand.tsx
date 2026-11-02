@@ -8,7 +8,7 @@ import Reveal from "./Reveal";
 /** Closing call to action, repeated at the bottom of most pages. */
 export default function CtaBand({
   title = "Make room for a child who needs you.",
-  text = "Enquiring costs nothing and there is no obligation. Talk to a friendly member of our team about whether fostering could be right for you.",
+  text = "Enquiring costs nothing. There's no obligation. Just a friendly chat about whether fostering could be right for you.",
 }: {
   title?: string;
   text?: string;

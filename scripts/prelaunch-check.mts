@@ -3,7 +3,6 @@
  * Lists everything that is still a placeholder, because search engines and visitors would see it.
  * Blockers make the command fail (exit code 1); warnings are things to confirm.
  */
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
@@ -17,8 +16,7 @@ for (const f of [".env.production", ".env.local"]) {
 }
 
 const { site } = await import("../src/config/site");
-const { stories } = await import("../src/content/stories");
-const { boroughs } = await import("../src/content/areas");
+const { areas } = await import("../src/content/areas");
 
 const blockers: string[] = [];
 const warnings: string[] = [];
@@ -31,9 +29,6 @@ if (/^020 7946/.test(site.contact.phone)) blockers.push(`Phone is a reserved exa
 if (site.contact.address.some((l) => /example/i.test(l))) blockers.push("Office address is a placeholder. Edit src/config/site.ts.");
 
 // --- Content
-const sample = stories.filter((s) => s.sample).length;
-if (sample) blockers.push(`${sample} carer stories are SAMPLES (src/content/stories.ts). Replace with real, consented stories or remove the section.`);
-
 const walk = (dir: string): string[] =>
   readdirSync(dir).flatMap((n) => {
     const p = join(dir, n);
@@ -46,18 +41,12 @@ for (const file of walk("src")) {
 }
 if (slots) blockers.push(`${slots} photo placeholders still show a "Photo placeholder" label. Add real images (PhotoSlot src="/photos/...").`);
 
-// The hero photo: the stand-in image is detected by its fingerprint.
-const placeholderHash = readFileSync("src/assets/.placeholder-hash", "utf8").trim();
-if (createHash("sha256").update(readFileSync("src/assets/hero-family.jpg")).digest("hex") === placeholderHash) {
-  blockers.push("The home page hero still uses the stand-in image. Save the real photo over src/assets/hero-family.jpg.");
-}
-
 if (!site.logo) blockers.push("No logo set (site.logo in src/config/site.ts). A placeholder mark is being shown.");
 
 // --- Trust and regulation
 if (!site.regulation.ofstedUrn) warnings.push("Ofsted URN not set. Add it (and the inspection report link) if the agency is registered; the site shows it automatically.");
 if (!Object.values(site.social).some(Boolean)) warnings.push("No social media links set (site.social). Add the agency's real accounts.");
-if (boroughs.every((b) => b.covered)) warnings.push("All London boroughs are marked as covered (src/content/areas.ts). Confirm this is true.");
+if (areas.every((a) => a.covered)) warnings.push("Every East and West Midlands area is marked as covered (src/content/areas.ts). Confirm which areas CFA is really recruiting in.");
 
 // --- Forms and data
 if (!process.env.SMTP_HOST || !process.env.NOTIFY_EMAIL_TO) blockers.push("Email notifications are off (SMTP_HOST / NOTIFY_EMAIL_TO). Staff would not be told about new enquiries.");

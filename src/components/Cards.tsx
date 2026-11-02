@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { fosteringTypes, faqs as allFaqs, processSteps } from "@/content/fostering";
 import { formatPostDate, type Post } from "@/content/posts";
-import type { Story } from "@/content/stories";
+import type { TeamMember } from "@/content/team";
 import { flatIcons } from "./Art";
 import { ArrowCircleIcon, ChevronDownIcon } from "./Icons";
 import { pick } from "./palette";
@@ -41,27 +42,31 @@ export function TypeCards({ limit }: { limit?: number }) {
   );
 }
 
-export function StoryCards({ items }: { items: Story[] }) {
+export function TeamCards({ items }: { items: TeamMember[] }) {
   return (
-    <div className="grid gap-6 md:grid-cols-3">
-      {items.map((s, i) => {
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((m, i) => {
         const c = pick(i + 1);
         return (
-          <Reveal key={s.slug} delay={i * 90}>
+          <Reveal key={m.slug} delay={(i % 3) * 90}>
             <article className={card}>
               <div className={`h-1.5 ${c.bar}`} />
-              <div className="flex flex-1 flex-col p-7">
-                <div className="mb-4 flex flex-wrap items-center gap-2">
-                  <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${c.chip}`}>{s.fostering}</span>
-                  {s.sample && (
-                    <span className="rounded-full bg-tangerine-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-tangerine-700">Sample story</span>
-                  )}
+              <div className="flex flex-1 flex-col items-center p-7 text-center">
+                <div className={`relative mb-5 h-40 w-32 overflow-hidden rounded-2xl shadow-md ring-4 ring-white ${c.tint}`}>
+                  <Image
+                    src={m.photo}
+                    alt={`${m.name}, ${m.role}`}
+                    fill
+                    sizes="128px"
+                    placeholder="blur"
+                    className="photo-img object-cover object-top"
+                  />
                 </div>
-                <h3 className="text-xl font-semibold">{s.title}</h3>
-                <p className="mt-3 flex-1 text-ink-soft">{s.excerpt}</p>
-                <p className={`mt-4 text-sm font-bold ${c.text}`}>{s.carer}</p>
-                <Link href={`/stories#${s.slug}`} className="group mt-1 inline-flex min-h-11 items-center gap-2 font-semibold text-navy-700 hover:text-navy-900">
-                  Read the story<span className="sr-only">: {s.title}</span>
+                <h3 className="text-xl font-semibold">{m.name}</h3>
+                <p className={`mt-1 text-sm font-bold ${c.text}`}>{m.role}</p>
+                <p className="mt-3 flex-1 text-ink-soft">{m.summary}</p>
+                <Link href={`/our-team#${m.slug}`} className="group mt-3 inline-flex min-h-11 items-center gap-2 font-semibold text-navy-700 hover:text-navy-900">
+                  Read full profile<span className="sr-only"> of {m.name}</span>
                   <ArrowCircleIcon width={20} height={20} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>

@@ -1,3 +1,4 @@
+import familyAutumn from "@/assets/photos/family-autumn.jpg";
 import { Backdrop, PhotoSlot } from "@/components/Art";
 import { FaqList, ProcessTimeline } from "@/components/Cards";
 import CtaBand from "@/components/CtaBand";
@@ -8,15 +9,15 @@ import { ButtonLink, Section, SectionHeading, TextLink } from "@/components/ui";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Become a London foster carer",
-  description: "Could you foster? Find out who can become a foster carer in London, what it takes, and how Central Fostering Agency UK supports you from your first enquiry.",
+  title: "Become a Midlands foster carer",
+  description: "Could you foster? Find out who can become a foster carer in the East or West Midlands, what it takes, and how Central Fostering Agency UK supports you.",
   path: "/become-a-foster-carer",
 });
 
 const yes = [
   "You are 21 or over",
   "You have a spare bedroom",
-  "You live in London, or nearby",
+  "You live in the East or West Midlands, or nearby",
   "You have the right to live in the UK",
   "You can offer time, patience and a listening ear",
   "You are single, married, partnered, or divorced",
@@ -38,7 +39,7 @@ export default function BecomeCarerPage() {
       <PageHero
         eyebrow="Could you foster?"
         title="You might be more suited to fostering than you think"
-        intro="Foster carers come from every walk of life. What matters is not who you are on paper, but what you can offer a child."
+        intro="Foster carers come from every walk of life. It's not who you are on paper. It's what you can offer a child."
       >
         <ButtonLink href="/apply" variant="orange" arrow>Apply online</ButtonLink>
         <ButtonLink href="/request-a-call-back" variant="outlineLight">Request a call back</ButtonLink>
@@ -59,12 +60,20 @@ export default function BecomeCarerPage() {
               ))}
             </ul>
             <p className="mt-6 text-ink-soft">
-              Not sure whether something rules you out? Ask us. Many things people worry about, such as age, health, a
-              past mistake or the size of their home, do not automatically stop them fostering.
+              Not sure something rules you out? Ask us. Age, health, a past mistake, the size of your home: none of
+              these automatically stops you fostering.
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <div className="relative"><Backdrop variant="c" className="absolute -right-8 -top-8 h-[115%] w-[115%] text-tangerine-100" /><PhotoSlot label="Foster carer reading with a child" tone="leaf" className="relative shadow-xl" /></div>
+            <div className="relative"><Backdrop variant="c" className="absolute -right-8 -top-8 h-[115%] w-[115%] text-tangerine-100" /><PhotoSlot
+              src={familyAutumn}
+              alt="A family of five laughing together on an autumn woodland path"
+              objectPosition="50% 30%"
+              ratio="aspect-[3/2]"
+              label="Foster carer reading with a child"
+              tone="leaf"
+              className="relative shadow-xl"
+            /></div>
           </Reveal>
         </div>
       </Section>
@@ -87,7 +96,7 @@ export default function BecomeCarerPage() {
       </Section>
 
       <Section tone="cream">
-        <SectionHeading center eyebrow="The path to approval" title="How you become a foster carer" intro="Around four to six months, with support at every step." />
+        <SectionHeading center eyebrow="The path to approval" title="Six steps. Four to six months." intro="With support at every one." />
         <ProcessTimeline />
       </Section>
 

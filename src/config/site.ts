@@ -17,8 +17,10 @@ export const site = {
   logoSize: { width: 889, height: 272 },
   logoAlt: "Central Fostering Agency UK",
   tagline: "Where every child finds a place to belong.",
+  // Where CFA is currently recruiting foster carers. Its office is in Birmingham (see contact.address).
+  serviceArea: "the East and West Midlands",
   description:
-    "Central Fostering Agency UK (CFA) is a fostering agency that recruits, trains and supports foster carers to give children and young people a safe, caring home.",
+    "Central Fostering Agency UK (CFA) is a Birmingham-based fostering agency recruiting, training and supporting foster carers across the East and West Midlands.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
   contact: {
@@ -35,8 +37,8 @@ export const site = {
 
   // Leave a value empty ("") to hide that icon.
   social: {
-    facebook: "",
-    instagram: "",
+    facebook: "https://www.facebook.com/share/18RJXVdj1T/",
+    instagram: "https://www.instagram.com/centralfostering",
     linkedin: "",
     x: "",
     tiktok: "",
@@ -82,7 +84,7 @@ export const navGroups: NavGroup[] = [
         href: "/finance-and-support",
         description: "Allowances, training and 24/7 help",
       },
-      { label: "Carer stories", href: "/stories", description: "Hear from people who foster" },
+      { label: "Meet the team", href: "/our-team", description: "The people who will support you" },
     ],
   },
   {
@@ -125,7 +127,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "About us", href: "/about" },
       { label: "Finance and support", href: "/finance-and-support" },
-      { label: "Carer stories", href: "/stories" },
+      { label: "Meet the team", href: "/our-team" },
       { label: "Areas we cover", href: "/areas-we-cover" },
       { label: "News and advice", href: "/blog" },
     ],

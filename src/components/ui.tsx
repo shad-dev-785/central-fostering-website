@@ -81,7 +81,7 @@ export function SectionHeading({
   return (
     <Reveal className={`mb-10 max-w-3xl sm:mb-14 ${center ? "mx-auto text-center [&>p:first-child]:justify-center" : ""}`}>
       {eyebrow && <Eyebrow light={light}>{eyebrow}</Eyebrow>}
-      <h2 className="text-3xl font-semibold sm:text-4xl lg:text-[2.6rem]">
+      <h2 className="text-3xl font-semibold sm:text-4xl lg:text-[2.25rem]">
         {parts ? (
           <>
             {parts[0]}

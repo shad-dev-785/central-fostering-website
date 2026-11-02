@@ -1,39 +1,38 @@
 /**
- * London boroughs shown on the "Areas we cover" page.
- * PLACEHOLDER: set `covered` to false for any borough the agency does not serve.
+ * Areas shown on the "Areas we cover" page and in the search-engine data (areaServed).
+ *
+ * CFA is based in Birmingham and is currently recruiting foster carers across the East and West Midlands.
+ * These are the standard local-authority areas of those two regions. CONFIRM WITH THE AGENCY: set `covered`
+ * to false for any area where it is not recruiting yet (they all start as covered).
  */
-export const boroughs: { name: string; region: "Central" | "North" | "East" | "South" | "West"; covered: boolean }[] = [
-  { name: "Camden", region: "Central", covered: true },
-  { name: "City of London", region: "Central", covered: true },
-  { name: "Islington", region: "Central", covered: true },
-  { name: "Kensington and Chelsea", region: "Central", covered: true },
-  { name: "Lambeth", region: "Central", covered: true },
-  { name: "Southwark", region: "Central", covered: true },
-  { name: "Westminster", region: "Central", covered: true },
-  { name: "Barnet", region: "North", covered: true },
-  { name: "Enfield", region: "North", covered: true },
-  { name: "Haringey", region: "North", covered: true },
-  { name: "Barking and Dagenham", region: "East", covered: true },
-  { name: "Hackney", region: "East", covered: true },
-  { name: "Havering", region: "East", covered: true },
-  { name: "Newham", region: "East", covered: true },
-  { name: "Redbridge", region: "East", covered: true },
-  { name: "Tower Hamlets", region: "East", covered: true },
-  { name: "Waltham Forest", region: "East", covered: true },
-  { name: "Bexley", region: "South", covered: true },
-  { name: "Bromley", region: "South", covered: true },
-  { name: "Croydon", region: "South", covered: true },
-  { name: "Greenwich", region: "South", covered: true },
-  { name: "Lewisham", region: "South", covered: true },
-  { name: "Merton", region: "South", covered: true },
-  { name: "Sutton", region: "South", covered: true },
-  { name: "Wandsworth", region: "South", covered: true },
-  { name: "Brent", region: "West", covered: true },
-  { name: "Ealing", region: "West", covered: true },
-  { name: "Hammersmith and Fulham", region: "West", covered: true },
-  { name: "Harrow", region: "West", covered: true },
-  { name: "Hillingdon", region: "West", covered: true },
-  { name: "Hounslow", region: "West", covered: true },
-  { name: "Kingston upon Thames", region: "West", covered: true },
-  { name: "Richmond upon Thames", region: "West", covered: true },
+export type Region = "West Midlands" | "East Midlands";
+
+export const regions: Region[] = ["West Midlands", "East Midlands"];
+
+export const areas: { name: string; region: Region; covered: boolean }[] = [
+  // West Midlands
+  { name: "Birmingham", region: "West Midlands", covered: true },
+  { name: "Coventry", region: "West Midlands", covered: true },
+  { name: "Dudley", region: "West Midlands", covered: true },
+  { name: "Herefordshire", region: "West Midlands", covered: true },
+  { name: "Sandwell", region: "West Midlands", covered: true },
+  { name: "Shropshire", region: "West Midlands", covered: true },
+  { name: "Solihull", region: "West Midlands", covered: true },
+  { name: "Staffordshire", region: "West Midlands", covered: true },
+  { name: "Stoke-on-Trent", region: "West Midlands", covered: true },
+  { name: "Telford and Wrekin", region: "West Midlands", covered: true },
+  { name: "Walsall", region: "West Midlands", covered: true },
+  { name: "Warwickshire", region: "West Midlands", covered: true },
+  { name: "Wolverhampton", region: "West Midlands", covered: true },
+  { name: "Worcestershire", region: "West Midlands", covered: true },
+  // East Midlands
+  { name: "Derby", region: "East Midlands", covered: true },
+  { name: "Derbyshire", region: "East Midlands", covered: true },
+  { name: "Leicester", region: "East Midlands", covered: true },
+  { name: "Leicestershire", region: "East Midlands", covered: true },
+  { name: "Lincolnshire", region: "East Midlands", covered: true },
+  { name: "Northamptonshire", region: "East Midlands", covered: true },
+  { name: "Nottingham", region: "East Midlands", covered: true },
+  { name: "Nottinghamshire", region: "East Midlands", covered: true },
+  { name: "Rutland", region: "East Midlands", covered: true },
 ];

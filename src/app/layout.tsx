@@ -30,7 +30,7 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `Fostering agency in London | ${site.name}`,
+    default: `Birmingham & Midlands fostering | ${site.name}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     type: "website",
     locale: "en_GB",
-    title: `Fostering agency in London | ${site.name}`,
+    title: `Birmingham & Midlands fostering | ${site.name}`,
     description: site.description,
   },
   twitter: { card: "summary_large_image" },

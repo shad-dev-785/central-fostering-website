@@ -15,7 +15,7 @@ export default function ApplyPage() {
       <PageHero
         eyebrow="Apply online"
         title="Start your fostering journey"
-        intro="This short form takes around five minutes. It is not the full assessment, just a first step so we can get to know you. There is no obligation."
+        intro="This short form takes around five minutes. It is not the full assessment, just a first step so we can get to know you. There is no obligation. We are currently recruiting foster carers in the East and West Midlands."
       />
       <Section tone="cream">
         <Container narrow>

@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div>
             <Logo light />
-            <p className="mt-5 max-w-sm text-white/80">{site.tagline} We are a London fostering agency helping children find a safe, caring home.</p>
+            <p className="mt-5 max-w-sm text-white/80">{site.tagline} We are a Birmingham-based fostering agency recruiting foster carers across the East and West Midlands.</p>
             <ul className="mt-6 space-y-3 text-white/90">
               <li className="flex items-start gap-3">
                 <PhoneIcon className="mt-1 shrink-0 text-tangerine-300" width={20} height={20} />

@@ -24,7 +24,7 @@ export default function ProcessPage() {
       <PageHero
         eyebrow="Your journey"
         title="The fostering process, step by step"
-        intro="Becoming a foster carer takes care and time, because the children you look after deserve it. Here is what to expect."
+        intro="Becoming a foster carer takes care and time, because the children you'll look after deserve it. Here's what to expect."
       >
         <ButtonLink href="/apply" variant="orange" arrow>Start your application</ButtonLink>
       </PageHero>
@@ -34,7 +34,7 @@ export default function ProcessPage() {
       </Section>
 
       <Section tone="leaf">
-        <SectionHeading eyebrow="Safeguarding" title="The checks we carry out" intro="These checks are required for every foster carer, at every agency. They are there to keep children safe." />
+        <SectionHeading eyebrow="Safeguarding" title="The checks we carry out" intro="Every foster carer, at every agency, goes through these. They're there to keep children safe." />
         <div className="grid gap-6 sm:grid-cols-2">
           {checks.map(([t, d], i) => (
             <Reveal key={t} delay={i * 80}>
@@ -46,8 +46,8 @@ export default function ProcessPage() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-ink-soft">
-          Having a past mistake does not always rule you out. Be honest with us from the start and we will explain how
-          it would be treated.
+          A past mistake doesn&apos;t always rule you out. Be honest from the start and we&apos;ll explain how it would
+          be treated.
         </p>
       </Section>
 

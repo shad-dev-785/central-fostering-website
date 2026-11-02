@@ -66,6 +66,18 @@
 
   --font-sans: var(--font-nunito-sans), system-ui, sans-serif;
   --font-display: var(--font-poppins), system-ui, sans-serif;
+
+  /*
+   * Type scale: a notch smaller than Tailwind's default (text-lg was 18px, text-5xl was 48px) so the page feels
+   * calmer, especially on phones. Change a number here and every text-* class on the site follows.
+   */
+  --text-lg: 1.0625rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.3125rem;
+  --text-3xl: 1.625rem;
+  --text-4xl: 2rem;
+  --text-5xl: 2.5rem;
+  --text-6xl: 3.125rem;
 }
 
 /* The logo's colours in order around the aperture. Used as a thin accent strip and the scroll progress bar. */
@@ -85,7 +97,7 @@
     background-color: #fff;
     color: var(--color-ink-soft);
     font-family: var(--font-sans);
-    font-size: 1.0625rem;
+    font-size: 1rem;
     line-height: 1.75;
     /* Long unbreakable strings (emails, URLs) wrap instead of forcing sideways scrolling on small phones. */
     overflow-wrap: anywhere;
@@ -188,6 +200,14 @@
   animation: hero-settle 2.2s cubic-bezier(0.16, 0.8, 0.2, 1) forwards, hero-drift 26s ease-in-out 2.2s infinite alternate;
   will-change: transform;
 }
+/* On large screens the photo starts a little in from the left; dissolving its left edge hides any seam against the navy. */
+@media (min-width: 1024px) {
+  .hero-fade-left {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 24%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 24%);
+  }
+}
+
 @keyframes hero-emerge { from { opacity: 1; } to { opacity: 0; } }
 .hero-veil { animation: hero-emerge 1.7s ease-out 0.1s both; }
 @keyframes hero-sheen {
@@ -205,6 +225,24 @@
 @keyframes hero-parallax { to { translate: 0 7%; } }
 @supports (animation-timeline: scroll()) {
   .hero-parallax { animation: hero-parallax linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+}
+
+/*
+ * Photos inside the page (not the hero): each settles in once when it scrolls into view (the .reveal wrapper
+ * starts the clock), then drifts very slowly, and moves a little against the page as you scroll.
+ */
+@keyframes photo-settle { from { transform: scale(1.14); } to { transform: scale(1); } }
+@keyframes photo-drift { from { transform: scale(1) translate3d(0, 0, 0); } to { transform: scale(1.05) translate3d(-1%, -0.6%, 0); } }
+.photo-img {
+  animation: photo-settle 1.8s cubic-bezier(0.16, 0.8, 0.2, 1) forwards, photo-drift 24s ease-in-out 1.8s infinite alternate;
+  will-change: transform;
+}
+@media (scripting: enabled) {
+  .reveal:not(.is-visible) .photo-img { animation-play-state: paused; }
+}
+@keyframes photo-parallax { from { translate: 0 -5%; } to { translate: 0 5%; } }
+@supports (animation-timeline: view()) {
+  .photo-parallax { animation: photo-parallax linear both; animation-timeline: view(); }
 }
 
 @keyframes spin-slow { to { transform: rotate(360deg); } }
@@ -234,7 +272,7 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { transition: none; }
-  .enter, .enter-slide, .enter-zoom, .squiggle-draw, .page-fade, .drift, .float-slow, .spin-slow, .hero-photo, .hero-parallax, .hero-sheen::before { animation: none !important; }
+  .enter, .enter-slide, .enter-zoom, .squiggle-draw, .page-fade, .drift, .float-slow, .spin-slow, .hero-photo, .hero-parallax, .hero-sheen::before, .photo-img, .photo-parallax { animation: none !important; }
   .hero-veil { display: none; }
   .scroll-progress { display: none !important; }
   .lift, .lift:hover, .lift svg { transition: none; transform: none; }

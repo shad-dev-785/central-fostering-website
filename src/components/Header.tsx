@@ -60,10 +60,10 @@ export default function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="bg-white">
+      <div className="bg-navy-800">
         <nav ref={navRef} aria-label="Main" className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 sm:px-8">
           <Link href="/" onClick={closeAll}>
-            <Logo />
+            <Logo light />
           </Link>
 
           {/* Desktop navigation */}
@@ -82,7 +82,7 @@ export default function Header() {
                     aria-expanded={isOpen}
                     aria-haspopup="true"
                     onClick={() => setOpenGroup(isOpen ? null : group.label)}
-                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 font-bold text-navy-800 hover:bg-navy-50 hover:text-navy-800 2xl:px-4"
+                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 font-bold text-white hover:bg-white/10 hover:text-white 2xl:px-4"
                   >
                     {group.label}
                     <ChevronDownIcon width={16} height={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
@@ -110,7 +110,7 @@ export default function Header() {
             })}
             {topLevelLinks.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="whitespace-nowrap rounded-full px-3 py-2 font-bold text-navy-800 hover:bg-navy-50 hover:text-navy-800 2xl:px-4">
+                <Link href={l.href} className="whitespace-nowrap rounded-full px-3 py-2 font-bold text-white hover:bg-white/10 hover:text-white 2xl:px-4">
                   {l.label}
                 </Link>
               </li>
@@ -120,13 +120,13 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden whitespace-nowrap rounded-full bg-navy-700 px-5 py-2.5 font-semibold text-white transition-colors hover:bg-navy-800 sm:inline-block"
+              className="hidden whitespace-nowrap rounded-full bg-tangerine-400 px-5 py-2.5 font-semibold text-ink transition-colors hover:bg-tangerine-300 sm:inline-block"
             >
               Enquire now
             </Link>
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-50 text-navy-800 xl:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 xl:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -139,18 +139,18 @@ export default function Header() {
 
         {/* Mobile navigation */}
         {mobileOpen && (
-          <div id="mobile-menu" data-lenis-prevent className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-leaf-100 bg-white xl:hidden">
+          <div id="mobile-menu" data-lenis-prevent className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-white/15 bg-navy-800 xl:hidden">
             <div className="mx-auto max-w-7xl px-5 py-4 sm:px-8">
               {navGroups.map((group) => (
-                <details key={group.label} className="border-b border-leaf-100 py-1">
-                  <summary className="flex cursor-pointer items-center justify-between py-3 font-bold text-ink">
+                <details key={group.label} className="border-b border-white/15 py-1">
+                  <summary className="flex cursor-pointer items-center justify-between py-3 font-bold text-white">
                     {group.label}
                     <ChevronDownIcon width={18} height={18} className="chev transition-transform" />
                   </summary>
                   <ul className="pb-3 pl-2">
                     {group.links.map((l) => (
                       <li key={l.href}>
-                        <Link href={l.href} onClick={closeAll} className="block rounded-lg px-3 py-2.5 text-navy-800 hover:bg-navy-50">
+                        <Link href={l.href} onClick={closeAll} className="block rounded-lg px-3 py-2.5 text-white/90 hover:bg-white/10 hover:text-white">
                           {l.label}
                         </Link>
                       </li>
@@ -159,15 +159,15 @@ export default function Header() {
                 </details>
               ))}
               {topLevelLinks.map((l) => (
-                <Link key={l.href} href={l.href} onClick={closeAll} className="block border-b border-leaf-100 py-4 font-bold text-ink">
+                <Link key={l.href} href={l.href} onClick={closeAll} className="block border-b border-white/15 py-4 font-bold text-white">
                   {l.label}
                 </Link>
               ))}
               <div className="flex flex-col gap-3 py-5">
-                <Link href="/contact" onClick={closeAll} className="rounded-full bg-navy-700 px-6 py-3 text-center font-semibold text-white">
+                <Link href="/contact" onClick={closeAll} className="rounded-full bg-tangerine-400 px-6 py-3 text-center font-semibold text-ink hover:bg-tangerine-300">
                   Enquire now
                 </Link>
-                <a href={site.contact.phoneHref} className="rounded-full border-2 border-navy-700 px-6 py-3 text-center font-bold text-navy-700">
+                <a href={site.contact.phoneHref} className="rounded-full border-2 border-white px-6 py-3 text-center font-bold text-white hover:bg-white/10">
                   Call {site.contact.phone}
                 </a>
               </div>
