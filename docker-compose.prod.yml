@@ -1,0 +1,50 @@
+# Production setup for one small AWS server (Lightsail). Two containers run side by side:
+#   web   - the Next.js website, plus its database file
+#   caddy - HTTPS and the public front door (ports 80 and 443)
+#
+# Start / update:  docker compose -f docker-compose.prod.yml --env-file .env.production up -d --build
+# All settings and secrets live in .env.production on the server (never in git). See .env.example for the list.
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      # The database is one file inside the "sitedata" volume. A volume survives rebuilds and restarts.
+      DATABASE_URL: file:/app/data/central-fostering.db
+    volumes:
+      - sitedata:/app/data
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      # Remembers the HTTPS certificates so they are not requested again after a restart.
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+
+volumes:
+  sitedata:
+  caddy_data:
+  caddy_config:

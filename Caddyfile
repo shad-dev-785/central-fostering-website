@@ -1,0 +1,15 @@
+# Caddy is the "front door" of the server. It does three jobs:
+#   1. Gets a free HTTPS certificate for your domain from Let's Encrypt and renews it by itself.
+#   2. Sends www.yourdomain to yourdomain (one address for search engines).
+#   3. Passes everything else to the website container.
+# SITE_DOMAIN comes from .env.production (for example centralfostering.org.uk, with no https:// and no www).
+# The certificate only works once the domain's DNS records point at this server.
+
+{$SITE_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+www.{$SITE_DOMAIN} {
+	redir https://{$SITE_DOMAIN}{uri} permanent
+}

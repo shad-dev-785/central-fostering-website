@@ -1,0 +1,14 @@
+# Keep secrets and bulky or machine-specific folders out of the container image.
+node_modules
+.next
+.git
+.gitignore
+data
+.env*
+npm-debug.log*
+tsconfig.tsbuildinfo
+*.md
+!README.md
+Dockerfile
+docker-compose*.yml
+Caddyfile
